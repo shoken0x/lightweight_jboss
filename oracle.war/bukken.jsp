@@ -2,7 +2,14 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page session="false" %>
-<%@ page import="javax.sql.*,javax.naming.*,java.sql.*" %>
+
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.NamingException" %>
 
 <html>
 <head>
@@ -31,8 +38,8 @@
        ResultSet rs = pstmt.executeQuery();
        try {
            rs.next();
-           name = rs.getString(1); 
-           image1 = rs.getString(2); 
+           name = rs.getString(1);
+           image1 = rs.getString(2);
        }
        finally {
           try { rs.close(); } catch (Exception e) {e.printStackTrace();}
@@ -45,12 +52,13 @@
    finally {
      try { conn.close(); } catch (Exception e) {e.printStackTrace();}
    }
-%> 
+%>
 <br>name :<%=name%>
 <br><img src="/oracle<%=image1%>?<%=bukken_id%>" />
 <br>
 <br>## request parameter
 <br>bukken_id :<%=bukken_id%>
-<br>user_id   :<%=user_id%>
+<br>user_id :<%=user_id%>
 </body>
 </html>
+
