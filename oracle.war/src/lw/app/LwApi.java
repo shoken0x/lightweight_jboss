@@ -98,8 +98,6 @@ public class LwApi extends HttpServlet {
   private static String getKeywordFromKW(Connection conn,
       PreparedStatement pstmt, ResultSet rs, int bukkenId) throws SQLException {
 
-    System.out.println("-------------------------------------");
-    System.out.println(bukkenId);
     String query = "select \"keyword\" from \"keyword\""
         + " where \"bukken_id\" = ?";
     pstmt = conn.prepareStatement(query);
